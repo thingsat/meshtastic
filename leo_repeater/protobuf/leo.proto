@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package meshtastic;
+
+option csharp_namespace = "Meshtastic.Protobufs";
+option go_package = "github.com/meshtastic/go/generated";
+option java_outer_classname = "LEOProtos";
+option java_package = "com.geeksville.mesh";
+option swift_prefix = "";
+
+
+/**
+ * @brief Compact representation of TLE (Two-line element set)
+ * https://en.wikipedia.org/wiki/Two-line_element_set
+ * Satelitte position can be predicted using the AioP13 library https://github.com/dl9sec/AioP13
+ */
+message TLE
+{
+	
+  uint32			N		= 1;		// Satellite catalog number from tle:l1:2..6
+	uint32   		YE		= 2;		// Epoch year from tle:l1:18..19    														year
+	float 			TE		= 3;		// Epoch (day of the year and fractional portion of the day) from tle:l1:20..31    			days
+	float 			IN		= 4;		// Inclination (degrees) from tle:l2:8..15
+	float 			RA		= 5;		// R.A.A.N (degrees) from tle:l2:17..24      												deg
+	float 			EC		= 6;		// Eccentricity from tle:l2:26..32  			 											-
+	float 			WP		= 7;		// Get argument of perigee (degrees) from tle:l2:34..41   			deg
+	float 			MA		= 8;		// Mean anomaly (degrees) from tle:l2:43..50  			deg
+	float 			MM		= 9;		// Mean motion from tle:l2:52..62   			rev/d
+	float 			M2		= 10;		// First time derivative of the mean motion divided by to from tle:l1:33..42    			rev/d/d
+	uint32 			RV		= 11;		// Revolution number at epoch (revolutions) from tle:l2:63..67  			 				-
+
+	/**
+    * @brief Element set number. Incremented when a new TLE is generated for this object from tle:l1:64..67
+  	* @note ES is used as version number. 
+    */
+
+  uint32   		ES	    = 12;		// Element set number. Incremented when a new TLE is generated for this object from tle:l1:64..67
+
+	/**
+	 * @brief (human-readable) Full name
+	 */
+	optional string sat_fullname = 13;
+}
+
+/*
+ * For LEO module configuration
+ * The configuration can be broadcasted into Mesh messages by the satellite/terrestrial mesh networks.
+ * Note Bene: the TLE is replaced only with a newer TLE (ie higher ES)
+ */
+message LEOConfig {
+
+  message TLEAddReplace {
+    /*
+    * Is a TLE for test
+    */
+    bool is_test = 1;
+    
+    /*
+     * TLE of a satellite to add or to replace
+     */
+    TLE tle = 2;
+
+    /*
+     * Satellite antenna aperture (in degree)
+     */ 
+    optional uint32 aperture = 3;
+
+    /*
+     * Satellite antenna gain (in dBi)
+     */ 
+    optional float gain = 4;
+  }
+
+  message TLERemove {
+
+   /*
+    * TLE of a satellite to remove
+    */
+    uint32			N		= 1;		// Satellite catalog number from tle:l1:2..6
+  }
+
+  oneof action {
+    TLEAddReplace addreplace = 2;
+    TLERemove remove = 3;
+  }
+
+  /*
+   * The digital signature of the config operation when it is broadcasted by satellite.
+   * Lenght depends of the Digital Signature Algorithm (64 bytes for EC25519)
+   */
+  optional bytes signature = 4;
+
+}

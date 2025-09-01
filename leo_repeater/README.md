@@ -1,5 +1,7 @@
 # Low-Earth Orbit (LEO) Meshtastic Repeater
 
+## Thingsat payloads
+
 The [Thingsat payloads for LEO cubesats](https://gricad-gitlab.univ-grenoble-alpes.fr/thingsat/public/-/tree/master/cubesat_mission_2) host a LoRa gateway (SX1303+1250) and a LoRa/LR-FHSS transceiver (SX1262).
 
 The Thingsat payload can repeat LoRa messages from terrestrial Meshtastic networks (according to the preset configuration and the community public channels of the overflown region).
@@ -33,4 +35,12 @@ Distance de 496,48 Km | SNR : -18,5 | RSSI : -128
 
 ![Thingsat payload @ SatRev's SOWA cubesat platform](https://gricad-gitlab.univ-grenoble-alpes.fr/thingsat/public/-/raw/master/cubesat_mission_2/media/thingsat-em-v2-01.jpg)
 
+## LEO module for Meshtastic
 
+The LEO module for Meshtastic allows the node to enter sleep mode and wake up when a satellite is in view.
+
+The LEO module for Meshtastic enables to trig message exchanges (RX/TX) when a satellite is in view.
+
+Prediction of satellite passes can be computed using the [AioP13 library](https://github.com/dl9sec/AioP13).
+
+[Proposition of `protobuf` description for node configuration](protobuf/leo.proto)
