@@ -4,3 +4,4 @@
 
 * [Emergency Warning Service 🌪️🌋🔥🌊](ews/)
 * [Low-Earth Orbit (LEO) Meshtastic Repeater 🛰️](leo_repeater/)
+* [AIS (automatic identification system) 🚢⛵🛶](ais/)
