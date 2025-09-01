@@ -1,4 +1,4 @@
-# Emergency Warning Service
+# Emergency Warning Service 🌪️🌋🔥🌊
 
 This directory contains a proposition of extension to Meshtastic for broadcastiing Common Alert Message Format (CAMF) messages throught LoRa mesh networks (terrestrial and sattelite).
 
