@@ -49,14 +49,14 @@ message EWSProviderPublicKey {
    */
   string long_name = 3;
 
-      /*
-     * Available flags auxiliary network protocols
+    /*
+     * Available digital signature algorithms
+     * See https://github.com/thingsat/ecc_mcu_benchmarks/blob/main/README.md
      */
     enum DSA {
-      /*
-       * Do not broadcast packets over any network protocol
-       */
-      ED25519;
+
+      ED25519 = 0;
+
     }
   
   /*
