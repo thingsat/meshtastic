@@ -1,0 +1,8 @@
+*EWSPacket.camf min_size:8
+*EWSPacket.camf max_size:8
+*EWSPacket.signature max_size:64
+
+
+*EWSProviderPublicKey.name max_size:8
+*EWSProviderPublicKey.long_name max_size:32
+*EWSProviderPublicKey.public_key max_size:64

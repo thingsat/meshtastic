@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package meshtastic;
+
+option csharp_namespace = "Meshtastic.Protobufs";
+option go_package = "github.com/meshtastic/go/generated";
+option java_outer_classname = "EWSProtos";
+option java_package = "com.geeksville.mesh";
+option swift_prefix = "";
+
+
+/*
+ * Packets for the EWS Plugin
+ */
+message EWSPacket {
+  /*
+   * Is a EWS test message
+   */
+  bool is_test = 1;
+  /*
+   * The CAMF message (122 bit-long)
+   */
+  bytes camf = 2;
+  /*
+   * The digital signature of the EWS Provider (A3 field in CAMF)
+   * Lenght depends of the Digital Signature Algorithm (64 bytes for EC25519)
+   */
+  optional bytes signature = 3;
+}
+
+
+/*
+ * For application configuration
+ */
+message EWSProviderPublicKey {
+
+  /*
+   * The EWS Provider ID (A3 field in CAMF)
+   */
+  uint32 provider_id = 1;
+
+  /*
+   * The short name of the EWS Provider
+   */
+  string name = 2;
+
+  /*
+   * The EWS Provider ID (A3 field in CAMF)
+   */
+  string long_name = 3;
+
+      /*
+     * Available flags auxiliary network protocols
+     */
+    enum DSA {
+      /*
+       * Do not broadcast packets over any network protocol
+       */
+      ED25519;
+    }
+  
+  /*
+   * The digital signature algorithm
+   */
+  DSA dsa = 4;
+
+  /*
+   * The digital signature of the EWS Provider (A3 field in CAMF)
+   * Lenght depends of the Digital Signature Algorithm (64 bytes for EC25519)
+   */
+  bytes public_key = 5;
+
+  /*
+   * The valid time of DSA public key. Epoch in seconds since 1/1/1970.
+   */
+  optional uint32 start_at = 6;
+
+  /*
+   * The expiration time of DSA public key. Epoch in seconds since 1/1/1970.
+   */
+  optional uint32 expires_at = 7;
+
+}
+
