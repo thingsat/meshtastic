@@ -31,4 +31,6 @@ Passerelle MQTT Gaulix : 29TRG1ML8ClN_H3-🗼-finiz | h3fz - !33691c48
 Distance de 496,48 Km | SNR : -18,5 | RSSI : -128
 ```
 
+![Thingsat payload @ SatRev's SOWA cubesat platform](https://gricad-gitlab.univ-grenoble-alpes.fr/thingsat/public/-/raw/master/cubesat_mission_2/media/thingsat-em-v2-01.jpg)
+
 
