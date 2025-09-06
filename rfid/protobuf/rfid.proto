@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package meshtastic;
+
+option csharp_namespace = "Meshtastic.Protobufs";
+option go_package = "github.com/meshtastic/go/generated";
+option java_outer_classname = "RFIDProtos";
+option java_package = "com.geeksville.mesh";
+option swift_prefix = "";
+
+
+/*
+ * RFID type
+ */
+enum RFIDType {
+  /*
+  * https://ref.gs1.org/standards/genspecs/
+  */
+  GS1    = 0;
+  /*
+  * https://nfc-forum.org/build/specifications#tag-type-technical-specifications
+  */
+  NFC_T1 = 1;
+  NFC_T2 = 2;
+  NFC_T3 = 3;
+  NFC_T4 = 4;
+  NFC_T5 = 5;
+
+  UNKNOWN = 999;
+}
+
+/*
+ * RFID event
+ */
+message RFIDEvent {
+  /*
+   * Timestamp (related to base_time) of the RFID tag reading event
+   */
+  uint32 timestamp = 1;
+
+  /*
+   * UUID of the RFID tag 
+   */
+  bytes uuid = 2;
+
+    /*
+   * UUID of the RFID tag 
+   */
+  optional RFIDType type = 3;
+
+  /*
+   * Extra data readen inside the tag memory
+   */
+  optional bytes extra = 3;
+}
+
+
+/*
+ * RFID packet
+ */
+message RFIDPacket {
+
+  /*
+   * Base timestamp for the RFIDEvent
+   */
+  uint32 base_timestamp = 1;
+
+  /*
+   * Array of RFIDEvent
+   */
+  repeated RFIDEvent rfid_events = 2;
+}
+
