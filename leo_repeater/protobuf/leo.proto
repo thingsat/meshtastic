@@ -17,7 +17,7 @@ option swift_prefix = "";
 message TLE
 {
 	
-  uint32			N		= 1;		// Satellite catalog number from tle:l1:2..6
+    uint32			N		= 1;		// Satellite catalog number from tle:l1:2..6
 	uint32   		YE		= 2;		// Epoch year from tle:l1:18..19    														year
 	float 			TE		= 3;		// Epoch (day of the year and fractional portion of the day) from tle:l1:20..31    			days
 	float 			IN		= 4;		// Inclination (degrees) from tle:l2:8..15
@@ -40,6 +40,16 @@ message TLE
 	 * @brief (human-readable) Full name
 	 */
 	optional string sat_fullname = 13;
+
+	/**
+	 * @brief Constellation id (for future use) : the constellation contains a LoRaConfig message
+	 */
+	optional uint32 constellation_id = 14;
+
+	/**
+	 * @brief Unix-epoch time of the last update of the TLE (for the TLE DB)
+	 */
+	optional uint32 last_update_time = 15;
 }
 
 /*
@@ -79,15 +89,18 @@ message LEOConfig {
     uint32			N		= 1;		// Satellite catalog number from tle:l1:2..6
   }
 
+  message TLEAction {
+
   oneof action {
-    TLEAddReplace addreplace = 2;
-    TLERemove remove = 3;
+	    TLEAddReplace addreplace = 1;
+	    TLERemove remove = 2;
   }
 
   /*
    * The digital signature of the config operation when it is broadcasted by satellite.
    * Lenght depends of the Digital Signature Algorithm (64 bytes for EC25519)
+   * See Remote Admin module https://meshtastic.org/docs/configuration/remote-admin/
    */
-  optional bytes signature = 4;
+  optional bytes signature = 3;
 
 }
