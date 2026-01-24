@@ -4,4 +4,10 @@
 
 An affordable AIS solution could be built on Meshtastic nodes embedded in [low-cost buoys](https://www.instructables.com/Meshtastic-Solar-Buoy/), with repeaters deployed along coastlines, other vessels and on [satellites](../leo_repeater/).
 
+References
+* https://github.com/aduvenhage/ais-decoder
+* https://www.tindie.com/products/astuder/daisy-ais-receiver/
+  * https://github.com/astuder/dAISy
+
+
 ![DIY Boey for RAK19007+RAK11300](meshtastic_boey.jpg)
